@@ -6,13 +6,13 @@
 #    By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 11:14:30 by yshimoma          #+#    #+#              #
-#    Updated: 2023/05/27 11:39:37 by yshimoma         ###   ########.fr        #
+#    Updated: 2023/05/28 19:31:33 by yshimoma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = wordle
 SRCS_DIR = ./src
-SRCS = main.c
+SRCS = main.c utils.c
 vpath %.c ${SRCS_DIR}
 OBJ_DIR	= ./obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
@@ -27,9 +27,9 @@ RM = rm -rf
 
 all: ${NAME}
 
-${NAME}: ${OBJS} ${DEPS}
+${NAME}: ${DEPS} ${OBJS}
 	$(MAKE) -C ${GNL_DIR}
-	${CC} -I${INCLUDE} ${GNL_DIR}${NAME_GNL} ${OBJS} -o $@
+	${CC} ${CFLAGS} -I${INCLUDE} ${GNL_DIR}${NAME_GNL} ${OBJS} -o $@
 
 ${OBJ_DIR}/%.o:%.c
 	mkdir -p ${OBJ_DIR}
@@ -37,7 +37,7 @@ ${OBJ_DIR}/%.o:%.c
 
 ${DEP_DIR}/%.d:%.c
 	mkdir -p ${DEP_DIR}
-	${CC} ${CFLAGS} -I${INCLUDE} -M $< > $@
+	${CC} ${CFLAGS} -I${INCLUDE} -M $< | sed 's,\($*\)\.o[ :]*,${OBJ_DIR}/\1.o $@ : ,g' > $@
 
 clean:
 	$(MAKE) clean -C ${GNL_DIR}
@@ -45,10 +45,10 @@ clean:
 	${RM} ${DEPS} ${DEP_DIR}
 
 fclean: clean
-	${RM} ${NAME} ${NAME_GNL}
+	${RM} ${NAME} ${GNL_DIR}${NAME_GNL}
 
 re: fclean all
 
--include ${DEPS}
+-include $(DEPS)
 
 .PHONY: all clean fclean re

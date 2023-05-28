@@ -12970,3 +12970,10 @@ zygal
 zygon
 zymes
 zymic
+aacde
+ccdea
+aaaab
+aaabb
+bbbaa
+aaaaa
+deded
