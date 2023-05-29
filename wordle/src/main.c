@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 11:14:39 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/05/28 19:27:04 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/05/29 18:31:37 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,9 @@ int main(void) {
 		printf("5文字の文字を入力してください: ");
 		fflush(stdout);
 		input_str = get_next_line(STDIN_FILENO);
+		if (input_str == NULL) {
+			exit(1);
+		}
 		if (strlen(input_str) > TRY_COUNT) {
 			printf(RED_COLOR "文字数が多いです。\n" RESET_COLOR);
 			free(input_str);

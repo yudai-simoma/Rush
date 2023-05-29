@@ -6,7 +6,7 @@
 #    By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/27 11:14:30 by yshimoma          #+#    #+#              #
-#    Updated: 2023/05/28 19:31:33 by yshimoma         ###   ########.fr        #
+#    Updated: 2023/05/29 18:30:22 by yshimoma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 DEP_DIR	= ./dep
 DEPS = $(addprefix $(DEP_DIR)/, $(SRCS:.c=.d))
 GNL_DIR = ./get_next_line
-NAME_GNL = /get_next_line.a
+NAME_GNL = get_next_line.a
 INCLUDE = ./header
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
@@ -29,7 +29,7 @@ all: ${NAME}
 
 ${NAME}: ${DEPS} ${OBJS}
 	$(MAKE) -C ${GNL_DIR}
-	${CC} ${CFLAGS} -I${INCLUDE} ${GNL_DIR}${NAME_GNL} ${OBJS} -o $@
+	${CC} ${CFLAGS} -I${INCLUDE} ${GNL_DIR}/${NAME_GNL} ${OBJS} -o $@
 
 ${OBJ_DIR}/%.o:%.c
 	mkdir -p ${OBJ_DIR}
@@ -45,7 +45,7 @@ clean:
 	${RM} ${DEPS} ${DEP_DIR}
 
 fclean: clean
-	${RM} ${NAME} ${GNL_DIR}${NAME_GNL}
+	${RM} ${NAME} ${GNL_DIR}/${NAME_GNL}
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: yshimoma <yshimoma@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:54:40 by yshimoma          #+#    #+#             */
-/*   Updated: 2023/03/20 19:59:22 by yshimoma         ###   ########.fr       */
+/*   Updated: 2023/05/29 18:30:08 by yshimoma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <limits.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 3
+#  define BUFFER_SIZE 100
 # endif
 
 char	*get_next_line(int fd);
